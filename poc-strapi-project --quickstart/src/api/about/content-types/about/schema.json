@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "abouts",
+  "info": {
+    "singularName": "about",
+    "pluralName": "abouts",
+    "displayName": "about",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Missao": {
+      "type": "text"
+    },
+    "Visao": {
+      "type": "text"
+    },
+    "Valores": {
+      "type": "string"
+    },
+    "Endereco": {
+      "type": "text"
+    },
+    "Video": {
+      "type": "blocks"
+    }
+  }
+}
