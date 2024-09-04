@@ -1,44 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import RestaurantsPage from './pages/RestaurantsPage';
+import CategoriesPage from './pages/CategoriesPage';
+import RestaurantForm from './pages/RestaurantForm';
+import CategoryForm from './pages/CategoryForm';
+import SobrePage from './pages/SobrePage';
 
 function App() {
-  const [restaurants, setRestaurants] = useState([]);
-
-  useEffect(() => {
-    const fetchRestaurants = async () => {
-      try {
-        const response = await axios.get('http://localhost:1337/api/restaurants?populate=*');
-        setRestaurants(response.data.data);
-      } catch (error) {
-        console.error('Erro ao buscar restaurantes:', error);
-      }
-    };
-
-    fetchRestaurants();
-  }, []);
-
   return (
-    <div className="App">
-      <h1>Lista de Restaurantes</h1>
-      <ul>
-        {restaurants.map((restaurant) => (
-          <li key={restaurant.id}>
-            {/* Verifica se 'Name' e 'Description' existem antes de acessá-los */}
-            <h2>{restaurant.attributes?.Name || 'Nome não disponível'}</h2>
+    <Router>
+      <nav>
+        <ul>
+          <li><Link to="/restaurants">Restaurantes</Link></li>
+          <li><Link to="/categories">Categorias</Link></li>
+          <li><Link to="/about">Sobre</Link></li>
+        </ul>
+      </nav>
 
-            {/* Verifica se 'Description' é um array e contém texto */}
-            <p>{restaurant.attributes?.Description?.[0]?.children?.[0]?.text || 'Descrição não disponível'}</p>
+      <Routes>
+        {/* Rotas de Restaurantes */}
+        <Route path="/restaurants" element={<RestaurantsPage />} />
+        <Route path="/restaurants/new" element={<RestaurantForm />} />
+        <Route path="/restaurants/edit/:id" element={<RestaurantForm />} />
 
-            {/* Verifica se 'categories' está presente antes de acessar */}
-            {restaurant.attributes?.categories?.data?.attributes?.Name ? (
-              <p>Categoria: {restaurant.attributes.categories.data.attributes.Name}</p>
-            ) : (
-              <p>Categoria não disponível</p>
-            )}
-          </li>
-        ))}
-      </ul>
-    </div>
+        {/* Rotas de Categorias */}
+        <Route path="/categories" element={<CategoriesPage />} />
+        <Route path="/categories/new" element={<CategoryForm />} />
+        <Route path="/categories/edit/:id" element={<CategoryForm />} />
+
+        <Route path="/about" element={<SobrePage />} />
+
+      </Routes>
+    </Router>
   );
 }
 
