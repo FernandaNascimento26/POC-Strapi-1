@@ -4,6 +4,8 @@ import CategoriesPage from './pages/CategoriesPage';
 import RestaurantForm from './pages/RestaurantForm';
 import CategoryForm from './pages/CategoryForm';
 import SobrePage from './pages/SobrePage';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -27,7 +29,13 @@ function App() {
         <Route path="/categories/new" element={<CategoryForm />} />
         <Route path="/categories/edit/:id" element={<CategoryForm />} />
 
+        {/* Rota Sobre */}
         <Route path="/about" element={<SobrePage />} />
+
+        {/* Rotas de Autenticação */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
 
       </Routes>
     </Router>
