@@ -6,6 +6,7 @@ import CategoryForm from './pages/CategoryForm';
 import SobrePage from './pages/SobrePage';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import FAQPage from './pages/FAQPage';
 
 function App() {
   return (
@@ -31,6 +32,11 @@ function App() {
 
         {/* Rota Sobre */}
         <Route path="/about" element={<SobrePage />} />
+
+        {/* Rota FAQr */}
+        <Route path="/faq" element={<FAQPage />} />
+
+
 
         {/* Rotas de Autenticação */}
         <Route path="/login" element={<Login />} />
